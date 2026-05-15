@@ -131,6 +131,51 @@ A production-ready predictive maintenance system for manufacturing equipment tha
   - Safe deployment with rollback
   - Scheduled retraining workflow
 
+## Live Demo
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/)
+
+An interactive Streamlit demo lets you explore the robustness layer on the real NASA C-MAPSS FD001 dataset — no setup required.
+
+**What the demo shows:**
+- Pick any of the 100 test engines and a fault mode (Gaussian noise, stuck-at-value, partial dropout, linear drift)
+- Adjust fault severity from 0 to 1 and choose which sensors to corrupt
+- Section 1: per-sensor health score bar chart (green / amber / red, affected sensors marked)
+- Section 2: three metric cards (True RUL, Degraded RUL, Robust RUL) + recovery gauge
+- Section 3: clean vs degraded signal line chart for the primary affected sensor
+
+### Deploy to Streamlit Cloud
+
+1. Fork this repository to your GitHub account.
+2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
+3. Click **New app** and fill in:
+
+   | Field | Value |
+   |---|---|
+   | Repository | `<your-username>/RobustPM` |
+   | Branch | `main` |
+   | Main file path | `demo/app.py` |
+
+4. Click **Deploy** — Streamlit Cloud installs `demo/requirements.txt` automatically.
+
+> **Note:** The app reads `archive/CMaps/test_FD001.txt` and `archive/CMaps/RUL_FD001.txt`
+> at startup. Make sure the `archive/` folder is committed to your fork, or download the
+> [NASA C-MAPSS dataset](https://data.nasa.gov/Aeorspace/CMAPSS-Jet-Engine-Simulated-Data/ff5v-kuh6)
+> and place the files at that path.
+
+### Run locally
+
+```bash
+# From the project root
+pip install -r demo/requirements.txt
+streamlit run demo/app.py
+```
+
+The demo has **no TensorFlow dependency** — it uses the same numpy-only
+physics-motivated estimator as the benchmark and severity-sweep scripts.
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites

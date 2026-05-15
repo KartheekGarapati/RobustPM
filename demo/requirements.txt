@@ -1,0 +1,9 @@
+# demo/requirements.txt — minimal dependencies for the Streamlit demo app
+# Install: pip install -r demo/requirements.txt
+#
+# The demo imports only sensor_degradation.py from the robustness module,
+# which depends solely on numpy. TensorFlow is NOT required.
+
+streamlit>=1.31.0
+numpy>=1.24.3
+plotly>=5.18.0
